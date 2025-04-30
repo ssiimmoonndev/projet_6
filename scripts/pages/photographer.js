@@ -5,7 +5,16 @@ const id = parseInt(params.get("id"));
 console.log(id);
 
 // Je veux récupérer toutes les données de mon fichier photographers.json
+fetch('photographers.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Erreur lors du chargement JSON :', error);
+  });
 // Ensuite je dois filtrer les données car je veux récupérer que les médias d'un seul photographer + son profil
+const photographeFiltre = data.filter(id, photographerId);
 
 // Fonction pour récupérer les données depuis le fichier JSON
 async function fetchData() {
