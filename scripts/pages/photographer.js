@@ -15,22 +15,24 @@ async function fetchData() {
   }
 }
 
+const picture = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/`;
+
 // Affiche les informations du photographe
 const displayPhotographerInfo = (photographer) => {
   console.log(photographer);
   // const portrait = photographer.portrait
-  // const { name, portrait } = photographer
-  // const picture = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/${portrait}`;
+
   const photographerNameHtml = document.querySelector(".photographer-name");
   photographerNameHtml.innerHTML = photographer.name
-  photographerCityHtml = document.querySelector(".photographer-city");
-  photographerCityHtml.innerHTML = photographer.city + ","
-  photographerCountryHtml = document.querySelector(".photographer-country");
-  photographerCountryHtml.innerHTML = photographer.country
-  photographerTagLineHtml = document.querySelector(".photographer-tagline");
+  let photographerCityHtml = document.querySelector(".photographer-city");
+  photographerCityHtml.innerHTML = photographer.city + ", " + photographer.country
+  // let photographerCountryHtml = document.querySelector(".photographer-country");
+  // photographerCountryHtml.innerHTML = photographer.country
+  let photographerTagLineHtml = document.querySelector(".photographer-tagline");
   photographerTagLineHtml.innerHTML = photographer.tagline
-  // photographerImage = document.querySelector(".photographe-image");
-  // photographerImage = photographer.portrait
+  let photographerImage = document.querySelector(".photographer-image");
+  photographerImage.src = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/${photographer.portrait}`;
+
 }
 
 // Fonction pour filtrer et afficher les données du photographe

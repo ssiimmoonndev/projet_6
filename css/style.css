@@ -80,6 +80,11 @@ a:visited {
     color: black;
 }
 
+.photograph-header {
+    display: flex;
+    flex-direction: column;
+}
+
 .photographer-name {
     color: #D3573C;
 }
@@ -90,4 +95,20 @@ a:visited {
 
 .photographer-tagline {
     color: #525252;
+}
+
+.photographer-image {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.localisation {
+    display: flex;
+    flex-direction: row;
+}
+
+.photographer-image {
+    justify-content: end;
 }
