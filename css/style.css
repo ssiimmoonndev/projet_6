@@ -79,3 +79,15 @@ a:link {
 a:visited {
     color: black;
 }
+
+.photographer-name {
+    color: #D3573C;
+}
+
+.photographer-city, .photographer-country {
+    color: #901C1C;
+}
+
+.photographer-tagline {
+    color: #525252;
+}

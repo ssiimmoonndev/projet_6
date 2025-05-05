@@ -4,18 +4,6 @@ const params = new URL(document.location).searchParams;
 const id = parseInt(params.get("id"));
 console.log(id);
 
-// Je veux récupérer toutes les données de mon fichier photographers.json
-fetch('photographers.json')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Erreur lors du chargement JSON :', error);
-  });
-// Ensuite je dois filtrer les données car je veux récupérer que les médias d'un seul photographer + son profil
-const photographeFiltre = data.filter(id, photographerId);
-
 // Fonction pour récupérer les données depuis le fichier JSON
 async function fetchData() {
   try {
@@ -27,19 +15,40 @@ async function fetchData() {
   }
 }
 
+// Affiche les informations du photographe
+const displayPhotographerInfo = (photographer) => {
+  console.log(photographer);
+  // const portrait = photographer.portrait
+  // const { name, portrait } = photographer
+  // const picture = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/${portrait}`;
+  const photographerNameHtml = document.querySelector(".photographer-name");
+  photographerNameHtml.innerHTML = photographer.name
+  photographerCityHtml = document.querySelector(".photographer-city");
+  photographerCityHtml.innerHTML = photographer.city + ","
+  photographerCountryHtml = document.querySelector(".photographer-country");
+  photographerCountryHtml.innerHTML = photographer.country
+  photographerTagLineHtml = document.querySelector(".photographer-tagline");
+  photographerTagLineHtml.innerHTML = photographer.tagline
+  // photographerImage = document.querySelector(".photographe-image");
+  // photographerImage = photographer.portrait
+}
+
 // Fonction pour filtrer et afficher les données du photographe
 async function displayPhotographerData() {
-  const { photographers, media } = await fetchData();
+  const { photographers, media } = await fetchData();  
+  
   
   // Filtre pour trouver le photographe correspondant à l'ID
   const photographer = photographers.find(photographer => photographer.id === id);
+
+  displayPhotographerInfo(photographer)
   
   // Filtre pour obtenir uniquement les médias du photographe
   const photographerMedia = media.filter(item => item.photographerId === id);
   
-  // Affiche les informations du photographe
-  displayPhotographerInfo(photographer);
-  
   // Affiche les médias du photographe
-  displayPhotographerMedia(photographerMedia);
+  // displayPhotographerMedia(photographerMedia);
 }
+
+
+displayPhotographerData()
