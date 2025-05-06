@@ -29,10 +29,24 @@ function photographerTemplate(data) {
     return { name, picture, getUserCardDOM }
 }
 
-// function imageTemplate(media) {
-//     const { id, photographerId, title, image, likes } = media;
+function imageTemplate(media) {
+    const { id, photographerId, title, image, likes } = media;
 
-//     const photos = `/assets/photographers/SamplePhotos/${id}`;
+    const photos = `/assets/photographers/SamplePhotos/${photographerId}`;
 
-//     return { id, media, getUserCardDOM }
-// }
+    function getMediaDOM() {
+        const a = document.createElement( 'a' );
+        const article = document.createElement( 'article' );
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", media)
+        const h3 = document.createElement ( 'h3' );
+        h3.textContent = title;
+        const p = document.createElement ( 'p' );
+        p.textContent = likes;
+        article.appendChild(img);
+        article.appendChild(h3);
+        article.appendChild(p);
+    }
+
+    return { id, media, getUserCardDOM }
+}

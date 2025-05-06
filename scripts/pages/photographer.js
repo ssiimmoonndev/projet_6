@@ -19,8 +19,6 @@ const picture = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/`;
 
 // Affiche les informations du photographe
 const displayPhotographerInfo = (photographer) => {
-  console.log(photographer);
-  // const portrait = photographer.portrait
 
   const photographerNameHtml = document.querySelector(".photographer-name");
   photographerNameHtml.innerHTML = photographer.name
@@ -49,15 +47,16 @@ async function displayPhotographerData() {
   const photographerMedia = media.filter(item => item.photographerId === id);
   
   // Affiche les médias du photographe
-  const displayPhotographerMedia = (photographerMedia);
   console.log(photographerMedia);
 
-  // media.forEach((photographerImage) => {
-  //   const imagePhotographer = imageTemplate(photographerImage);
-  //   const userCardDOM = imagePhotographer.getUserCardDOM();
-  //   imageSection.appendChild(userCardDOM);
-
-  // console.log(photographerImage);
+  photographerMedia.forEach((photographerImage) => {
+    console.log(photographerImage);
+    
+    const imagePhotographer = imageTemplate(photographerImage.image);
+    const mediaCardDOM = imagePhotographer.getMediaDOM();
+    imageSection.appendChild(getMediaDOM);
+    
+  console.log(photographerImage);
   
   });
   
