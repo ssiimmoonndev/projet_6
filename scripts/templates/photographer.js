@@ -28,3 +28,11 @@ function photographerTemplate(data) {
     }
     return { name, picture, getUserCardDOM }
 }
+
+// function imageTemplate(media) {
+//     const { id, photographerId, title, image, likes } = media;
+
+//     const photos = `/assets/photographers/SamplePhotos/${id}`;
+
+//     return { id, media, getUserCardDOM }
+// }

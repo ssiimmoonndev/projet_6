@@ -32,14 +32,14 @@ const displayPhotographerInfo = (photographer) => {
   photographerTagLineHtml.innerHTML = photographer.tagline
   let photographerImage = document.querySelector(".photographer-image");
   photographerImage.src = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/${photographer.portrait}`;
-
 }
 
 // Fonction pour filtrer et afficher les données du photographe
 async function displayPhotographerData() {
   const { photographers, media } = await fetchData();  
   
-  
+  const imageSection = document.querySelector(".photos-photographer");
+
   // Filtre pour trouver le photographe correspondant à l'ID
   const photographer = photographers.find(photographer => photographer.id === id);
 
@@ -49,7 +49,18 @@ async function displayPhotographerData() {
   const photographerMedia = media.filter(item => item.photographerId === id);
   
   // Affiche les médias du photographe
-  // displayPhotographerMedia(photographerMedia);
+  const displayPhotographerMedia = (photographerMedia);
+  console.log(photographerMedia);
+
+  // media.forEach((photographerImage) => {
+  //   const imagePhotographer = imageTemplate(photographerImage);
+  //   const userCardDOM = imagePhotographer.getUserCardDOM();
+  //   imageSection.appendChild(userCardDOM);
+
+  // console.log(photographerImage);
+  
+  });
+  
 }
 
 
