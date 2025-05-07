@@ -30,23 +30,34 @@ function photographerTemplate(data) {
 }
 
 function imageTemplate(media) {
-    const { id, photographerId, title, image, likes } = media;
-
-    const photos = `/assets/photographers/SamplePhotos/${photographerId}`;
+    const { id, photographerId, title, image, video, likes } = media;
 
     function getMediaDOM() {
         const a = document.createElement( 'a' );
         const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", media)
         const h3 = document.createElement ( 'h3' );
         h3.textContent = title;
         const p = document.createElement ( 'p' );
         p.textContent = likes;
-        article.appendChild(img);
+        if (image) {
+            const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
+            const img = document.createElement( 'img' );
+            img.setAttribute("src", photos)
+            article.appendChild(img);
+        } else {
+            const srcVideo = `/assets/photographers/SamplePhotos/${photographerId}/${video}`;
+            const videoHtml = document.createElement( 'video' );
+            const source = document.createElement ( 'source' );
+            source.setAttribute("src", srcVideo)
+            videoHtml.setAttribute("controls", true);
+            videoHtml.appendChild(source);
+            article.appendChild(videoHtml);
+        }
         article.appendChild(h3);
         article.appendChild(p);
+
+        return article
     }
 
-    return { id, media, getUserCardDOM }
+    return { id, media, getMediaDOM }
 }
