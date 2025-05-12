@@ -130,21 +130,35 @@ button {
     font-weight: bold;
     background-color: white;
     border: none;
+    padding-top: 20px;
 }
 
 .photos-photographer {
     display: flex;
     flex-wrap: wrap;
     gap: 5%;
+    padding-top: 3%;
 }
 
 .photos-photographer article {
-    /* max-width: 350px;
-    max-height: 350px; */
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .photos-photographer img, video {
     width: 350px;
     height: 350px;
     object-fit: cover;
+}
+
+.calotte {
+    display: flex;
+    justify-content: space-between;
+    color: #901C1C;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.calotte p {
+    padding: 0;
 }

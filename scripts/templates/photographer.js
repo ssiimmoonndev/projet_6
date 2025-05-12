@@ -36,11 +36,14 @@ function imageTemplate(media) {
         const a = document.createElement( 'a' );
         const article = document.createElement( 'article' );
         const content = document.createElement('div');
-        content.appendChild(article);
-        const h3 = document.createElement ( 'h3' );
+        article.appendChild(content);
+        content.className = "calotte";
+        const h3 = document.createElement('h3');
         h3.textContent = title;
-        const p = document.createElement ( 'p' );
-        p.textContent = likes;
+        const p = document.createElement('p');
+        p.textContent = likes + " ♥ ";
+        // content.appendChild(h3)
+        // content.appendChild(p)
         if (image) {
             const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
             const img = document.createElement( 'img' );
@@ -49,14 +52,16 @@ function imageTemplate(media) {
         } else {
             const srcVideo = `/assets/photographers/SamplePhotos/${photographerId}/${video}`;
             const videoHtml = document.createElement( 'video' );
-            const source = document.createElement ( 'source' );
+            const source = document.createElement( 'source' );
             source.setAttribute("src", srcVideo)
             videoHtml.setAttribute("controls", true);
             videoHtml.appendChild(source);
             article.appendChild(videoHtml);
         }
-        article.appendChild(h3);
-        article.appendChild(p);
+        content.appendChild(h3)
+        content.appendChild(p)
+        // article.appendChild(h3);
+        // article.appendChild(p);
 
         return article
     }
