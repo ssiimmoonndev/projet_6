@@ -35,6 +35,8 @@ function imageTemplate(media) {
     function getMediaDOM() {
         const a = document.createElement( 'a' );
         const article = document.createElement( 'article' );
+        const content = document.createElement('div');
+        content.appendChild(article);
         const h3 = document.createElement ( 'h3' );
         h3.textContent = title;
         const p = document.createElement ( 'p' );

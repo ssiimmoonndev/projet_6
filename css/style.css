@@ -5,6 +5,9 @@ body {
     margin: 0;
 }
 
+main {
+    padding: 3%;
+}
 
 header {
     display: flex;
@@ -16,7 +19,16 @@ header {
 
 h1 {
     color: #901C1C;
-    margin-right: 100px;
+    margin: 0;
+}
+
+h3 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    padding-top: 10px;
 }
 
 .logo {
@@ -82,10 +94,14 @@ a:visited {
 
 .photograph-header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0 5%;
 }
 
 .photographer-name {
+    font-size: xxx-large;
     color: #D3573C;
 }
 
@@ -109,13 +125,26 @@ a:visited {
     flex-direction: row;
 }
 
-.photographer-image {
-    
-}
-
 button {
     font-size: large;
     font-weight: bold;
     background-color: white;
     border: none;
+}
+
+.photos-photographer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.photos-photographer article {
+    /* max-width: 350px;
+    max-height: 350px; */
+}
+
+.photos-photographer img, video {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
 }
