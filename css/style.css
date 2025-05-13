@@ -140,10 +140,10 @@ button {
     padding-top: 3%;
 }
 
-.photos-photographer article {
+/* .photos-photographer article {
     display: flex;
     flex-direction: column-reverse;
-}
+} */
 
 .photos-photographer img, video {
     width: 350px;
@@ -151,14 +151,16 @@ button {
     object-fit: cover;
 }
 
-.calotte {
-    display: flex;
-    justify-content: space-between;
-    color: #901C1C;
-    padding-top: 10px;
-    padding-bottom: 20px;
+.calotte2 {
+    /* display: flex;
+    justify-content: space-between; */
 }
 
-.calotte p {
+.calotte h3, p {
+    color: #901C1C;
     padding: 0;
+    display: flex;
+    justify-content: space-between;
+    /* padding-top: 10px;
+    padding-bottom: 20px; */
 }
