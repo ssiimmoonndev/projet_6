@@ -98,6 +98,7 @@ a:visited {
     align-items: center;
     margin: 0;
     padding: 0 5%;
+    gap: 15px;
 }
 
 .photographer-name {
@@ -113,18 +114,9 @@ a:visited {
     color: #525252;
 }
 
-/* .calotte3 {
-    border-radius: 50%;
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
-} */
-
 .photographer-image {
-    border-radius: 50%;
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 
 .localisation {
@@ -150,15 +142,21 @@ button {
 .photos-photographer img, video {
     max-width: 100%;
     max-height: 100%;
-   
+}
+
+.calotte3 {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .calotte2 {
-    /* display: flex;
-    justify-content: space-between; */
     width: 350px;
     height: 350px;
-    
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .calotte {
