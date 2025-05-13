@@ -37,7 +37,7 @@ function imageTemplate(media) {
         const article = document.createElement( 'article' );
         const content = document.createElement('div');
         const photosPhotograph = document.createElement('div');
-        content.appendChild(photosPhotograph);
+        article.appendChild(photosPhotograph);
         photosPhotograph.className = "calotte2";
         article.appendChild(content);
         content.className = "calotte";
