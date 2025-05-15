@@ -38,15 +38,13 @@ function imageTemplate(media) {
         const content = document.createElement('div');
         const photosPhotograph = document.createElement('div');
         article.appendChild(photosPhotograph);
-        photosPhotograph.className = "calotte2";
+        photosPhotograph.className = "photos-photographe";
         article.appendChild(content);
-        content.className = "calotte";
+        content.className = "titre-like";
         const h3 = document.createElement('h3');
         h3.textContent = title;
         const p = document.createElement('p');
         p.textContent = likes + " ♥ ";
-        // content.appendChild(h3)
-        // content.appendChild(p)
         if (image) {
             const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
             const img = document.createElement( 'img' );
@@ -63,8 +61,6 @@ function imageTemplate(media) {
         }
         content.appendChild(h3)
         content.appendChild(p)
-        // article.appendChild(h3);
-        // article.appendChild(p);
 
         return article
     }

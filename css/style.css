@@ -144,7 +144,7 @@ button {
     max-height: 100%;
 }
 
-.calotte3 {
+.photographe-info-image {
     border-radius: 50%;
     height: 200px;
     width: 200px;
@@ -152,14 +152,14 @@ button {
     overflow: hidden;
 }
 
-.calotte2 {
+.photos-photographe {
     width: 350px;
     height: 350px;
     overflow: hidden;
     border-radius: 10px;
 }
 
-.calotte {
+.titre-like {
     color: #901C1C;
     padding: 0;
     display: flex;
@@ -169,6 +169,6 @@ button {
     padding-bottom: 20px;
 }
 
-.calotte p {
+.titre-like p {
     padding: 0;
 }
