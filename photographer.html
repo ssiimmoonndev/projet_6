@@ -39,13 +39,43 @@
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
-					<div>
+					<div class="formData">
 						<label>Prénom</label>
-						<input />
+						<input 
+              class="text-control"
+              type="text"
+              id="first"
+              name="first"
+              minlength="2"
+            />
 					</div>
           <div>
 						<label>Nom</label>
-						<input />
+						<input
+            class="text-control"
+            type="text"
+            id="last"
+            name="last"
+            minlength="2"
+           />
+					</div>
+          <div>
+						<label>Email</label>
+						<input
+              class="text-control"
+              type="email"
+              id="email"
+              name="email"
+             />
+					</div>
+          <div>
+						<label>Téléphone</label>
+						<input
+              class="text-control"
+              type="number"
+              id="number"
+              name="number"
+            />
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
