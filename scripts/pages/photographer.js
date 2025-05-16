@@ -47,18 +47,13 @@ async function displayPhotographerData() {
   const photographerMedia = media.filter(item => item.photographerId === id);
   
   // Affiche les médias du photographe
-  console.log(photographerMedia);
 
   photographerMedia.forEach((media) => {
-    console.log(media);
     
     const imagePhotographer = imageTemplate(media);
     const mediaCardDOM = imagePhotographer.getMediaDOM();
-    console.log(mediaCardDOM);
     
     imageSection.appendChild(mediaCardDOM);
-    
-  console.log(media);
   
   });
   

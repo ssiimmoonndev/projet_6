@@ -8,10 +8,9 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-const prenom = getElementById("first");
+const prenom = document.getElementById("first");
 const nom = document.getElementById("last"); // Champ nom
 const mail = document.getElementById("email"); // Champ mail
-
 function validate() {
   let isValid = true;
 
@@ -45,7 +44,9 @@ function validate() {
 
 }
 
-document.querySelector("").addEventListener("submit", function(event) { // Ajout d'un écouteur d'événement sur le formulaire lors de sa soumission
+document.querySelector("form").addEventListener("submit", function(event) { // Ajout d'un écouteur d'événement sur le formulaire lors de sa soumission
+  console.log("Envoyer");
+  
   if (!validate()) { // Vérifie la validation du formulaire
     event.preventDefault(); // Empêche l'envoi si le formulaire est invalide
   } else {
