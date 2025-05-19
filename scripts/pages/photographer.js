@@ -54,7 +54,7 @@ async function displayPhotographerData() {
     const mediaCardDOM = imagePhotographer.getMediaDOM();
     
     imageSection.appendChild(mediaCardDOM);
-  
+    
   });
   
 }

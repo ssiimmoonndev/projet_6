@@ -7,7 +7,10 @@ function photographerTemplate(data) {
         const a = document.createElement( 'a' );
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
+        img.className = "photographer-image";
         img.setAttribute("src", picture)
+        const imageContainer = document.createElement('div');
+        imageContainer.className = "photographe-info-image";
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const h3 = document.createElement( 'h3' );
@@ -16,7 +19,8 @@ function photographerTemplate(data) {
         h5.textContent = tagline;
         const p = document.createElement( 'p' );
         p.textContent = price + "€/jour";
-        article.appendChild(img);
+        imageContainer.appendChild(img);
+        article.appendChild(imageContainer);
         article.appendChild(h2);
         article.appendChild(h3);
         article.appendChild(h5);
