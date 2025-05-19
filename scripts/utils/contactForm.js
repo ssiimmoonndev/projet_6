@@ -8,10 +8,10 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-const prenom = document.getElementById("first");
+const prenom = document.getElementById("first"); // Champ prenom
 const nom = document.getElementById("last"); // Champ nom
 const mail = document.getElementById("email"); // Champ mail
-const phone = document.getElementById("number");
+const phone = document.getElementById("number"); // Champ phone
 
 
 document.querySelector("form").addEventListener("submit", function(event) { // Ajout d'un écouteur d'événement sur le formulaire lors de sa soumission
