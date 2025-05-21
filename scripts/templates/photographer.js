@@ -33,7 +33,17 @@ function photographerTemplate(data) {
     return { name, picture, getUserCardDOM }
 }
 
-function imageTemplate(media) {
+function openLightBox(index) {
+    const lightbox = document.querySelector(".lightbox");
+    lightbox.classList.add("active");
+}
+
+function closeLightBox() {
+    const lightbox = document.querySelector(".lightbox");
+    lightbox.classList.remove("active");
+}
+
+function imageTemplate(media, index) {
     const { id, photographerId, title, image, video, likes } = media;
 
     function getMediaDOM() {
@@ -54,11 +64,16 @@ function imageTemplate(media) {
             const img = document.createElement( 'img' );
             img.setAttribute("src", photos)
             photosPhotograph.appendChild(img);
+            img.setAttribute("data-index", index);
+            img.addEventListener("click", () => {
+                openLightBox(index)
+            })
         } else {
             const srcVideo = `/assets/photographers/SamplePhotos/${photographerId}/${video}`;
             const videoHtml = document.createElement( 'video' );
             const source = document.createElement( 'source' );
             source.setAttribute("src", srcVideo)
+            videoHtml.setAttribute("data-index", index);
             videoHtml.setAttribute("controls", true);
             videoHtml.appendChild(source);
             photosPhotograph.appendChild(videoHtml);
