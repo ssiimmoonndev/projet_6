@@ -82,9 +82,46 @@ form input {
     top: 0px;
     width: 100%;
     height: 100%;
-
 }
 
 .lightbox.active {
     display: block;
+    background-color: gray;
+}
+
+.modal-lightbox {
+    border-radius: 5px;
+    background-color: #959595;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+}
+
+/* .modal-lightbox header {
+    justify-content: space-between;
+    width: 100%;
+} */
+
+.modal-lightbox img {
+    cursor: pointer;
+}
+
+.photo-lightbox {
+    width: 500px;
+    height: 500px;
+}
+
+.lightbox_button {
+    display: flex;
+}
+
+.photo-lightbox img {
+    z-index: 1000;
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
 }

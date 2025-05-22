@@ -82,9 +82,19 @@
 			</div>
 		</div>
     <div class="lightbox">
-      <img src="assets/icons/close.svg" onclick="closeLightBox()" />
-      <button class="lightbox_next">Suivant</button>
-      <button class="lightbox_previous">Précédent</button>
+      <div class="modal-lightbox">
+        <div class="cross-lightbox">
+          <img src="assets/icons/close.svg" onclick="closeLightBox()" />
+        </div>
+        <div class="lightbox_button">
+          <button class="lightbox_next">Suivant</button>
+          <div class="photo-lightbox">
+            
+          </div>
+          <button class="lightbox_previous">Précédent</button>
+        </div>
+        
+      </div>
     </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/templates/photographer.js"></script>
