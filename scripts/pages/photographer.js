@@ -4,6 +4,9 @@ const params = new URL(document.location).searchParams;
 const id = parseInt(params.get("id"));
 console.log(id);
 
+let currentIndex = 0;
+let allPhotos = [];
+
 // Fonction pour récupérer les données depuis le fichier JSON
 async function fetchData() {
   try {
@@ -48,14 +51,24 @@ async function displayPhotographerData() {
   
   // Affiche les médias du photographe
 
+  allPhotos = photographerMedia.map(media => {
+    if (media.image) {
+      return `/assets/photographers/SamplePhotos/${media.photographerId}/${media.image}`;
+    } else if (media.video) {
+      return `/assets/photographers/SamplePhotos/${media.photographerId}/${media.video}`;
+    }
+  });
+
   photographerMedia.forEach((media, index) => {
     
     const imagePhotographer = imageTemplate(media, index);
     const mediaCardDOM = imagePhotographer.getMediaDOM();
     
     imageSection.appendChild(mediaCardDOM);
-    
   });
+
+  document.querySelector(".lightbox_previous").addEventListener("click", showPreviousImage);
+    document.querySelector(".lightbox_next").addEventListener("click", showNextImage);
   
 }
 

@@ -34,15 +34,14 @@ function photographerTemplate(data) {
 }
 
 function openLightBox(index, photos) {
-  console.log(photos);
   
     const lightbox = document.querySelector(".lightbox");
     lightbox.classList.add("active");
     const photoLightBox = document.querySelector(".photo-lightbox");
+    photoLightBox.innerHTML = ""; // Nettoie avant d'ajouter
     const img = document.createElement( 'img' );
     photoLightBox.appendChild(img);
     img.setAttribute("src", photos)
-    
 }
 
 function closeLightBox() {
@@ -51,6 +50,22 @@ function closeLightBox() {
     const photoLightBox = document.querySelector(".photo-lightbox img");
     photoLightBox.remove();
 }
+
+function showNextImage() {
+    currentIndex = (currentIndex + 1) % allPhotos.length;
+    updateLightBoxImage();
+}
+
+function showPreviousImage() {
+    currentIndex = (currentIndex - 1 + allPhotos.length) % allPhotos.length;
+    updateLightBoxImage();
+}
+
+function updateLightBoxImage() {
+    const img = document.querySelector(".photo-lightbox img");
+    img.setAttribute("src", allPhotos[currentIndex]);
+}
+
 
 function imageTemplate(media, index) {
     const { id, photographerId, title, image, video, likes } = media;
@@ -75,6 +90,7 @@ function imageTemplate(media, index) {
             photosPhotograph.appendChild(img);
             img.setAttribute("data-index", index);
             img.addEventListener("click", () => {
+                currentIndex = index;
                 openLightBox(index, photos)
             })
         } else {

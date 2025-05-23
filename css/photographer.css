@@ -117,6 +117,13 @@ form input {
 
 .lightbox_button {
     display: flex;
+    /* flex-direction: row-reverse; */
+}
+
+.lightbox_previous,
+.lightbox_next {
+    color: #901C1C;
+    cursor: pointer;
 }
 
 .photo-lightbox img {
@@ -124,4 +131,10 @@ form input {
     width: 500px;
     height: 500px;
     object-fit: cover;
+}
+
+.cross-lightbox img {
+    width: 25px;
+    height: 25px;
+    fill: #901C1C;      
 }
