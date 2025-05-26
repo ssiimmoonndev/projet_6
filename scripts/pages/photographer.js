@@ -53,11 +53,20 @@ async function displayPhotographerData() {
 
   allPhotos = photographerMedia.map(media => {
     if (media.image) {
-      return `/assets/photographers/SamplePhotos/${media.photographerId}/${media.image}`;
+      return {
+        src:`/assets/photographers/SamplePhotos/${media.photographerId}/${media.image}`,
+        title:media.title,
+        type:"image"
+      }
     } else if (media.video) {
-      return `/assets/photographers/SamplePhotos/${media.photographerId}/${media.video}`;
+      return {
+        src:`/assets/photographers/SamplePhotos/${media.photographerId}/${media.video}`,
+        title:media.title,
+        type:"video"
+      }
     }
   });
+  
 
   photographerMedia.forEach((media, index) => {
     

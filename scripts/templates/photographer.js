@@ -33,25 +33,37 @@ function photographerTemplate(data) {
     return { name, picture, getUserCardDOM }
 }
 
-function openLightBox(index, photos, title) {
-  
+function openLightBox(index) {
+    
+    const media = allPhotos[index];
     const lightbox = document.querySelector(".lightbox");
     lightbox.classList.add("active");
     const photoLightBox = document.querySelector(".photo-lightbox");
     photoLightBox.innerHTML = ""; // Nettoie avant d'ajouter
-    const img = document.createElement( 'img' );
-    photoLightBox.appendChild(img);
-    img.setAttribute("src", photos)
+    if (media.type == "image") {
+        const img = document.createElement( 'img' );
+        photoLightBox.appendChild(img);
+        img.setAttribute("src", media.src)
+    } else {
+        const videoHtml = document.createElement( 'video' );
+        const source = document.createElement( 'source' );
+        source.setAttribute("src", media.src)
+        videoHtml.setAttribute("data-index", index);
+        videoHtml.setAttribute("controls", true);
+        videoHtml.appendChild(source);
+        photoLightBox.appendChild(videoHtml);
+    }
     const photoTitle = document.createElement('h3');
-    photoTitle.textContent = title;
+    photoTitle.textContent = media.title;
+    photoTitle.className = "lightbox-title";
     photoLightBox.appendChild(photoTitle);
 }
 
 function closeLightBox() {
     const lightbox = document.querySelector(".lightbox");
     lightbox.classList.remove("active");
-    const photoLightBox = document.querySelector(".photo-lightbox img");
-    photoLightBox.remove();
+    const photoLightBox = document.querySelector(".photo-lightbox");
+    photoLightBox.innerHTML = "";
 }
 
 function showNextImage() {
@@ -65,8 +77,33 @@ function showPreviousImage() {
 }
 
 function updateLightBoxImage() {
-    const img = document.querySelector(".photo-lightbox img");
-    img.setAttribute("src", allPhotos[currentIndex]);
+    const media = allPhotos[currentIndex]
+
+    
+    
+    
+    const photoLightBox = document.querySelector(".photo-lightbox");
+    photoLightBox.innerHTML = ""; // Nettoie avant d'ajouter
+    if (media.type == "image") {
+        const img = document.createElement( 'img' );
+        photoLightBox.appendChild(img);
+        img.setAttribute("src", media.src)
+    } else {
+        const videoHtml = document.createElement( 'video' );
+        const source = document.createElement( 'source' );
+        source.setAttribute("src", media.src)
+        videoHtml.setAttribute("data-index", currentIndex);
+        videoHtml.setAttribute("controls", true);
+        videoHtml.appendChild(source);
+        photoLightBox.appendChild(videoHtml);
+    }
+    const photoTitle = document.createElement('h3');
+    photoTitle.textContent = media.title;
+    photoTitle.className = "lightbox-title";
+    photoLightBox.appendChild(photoTitle);
+    
+    // const photoTitle = document.querySelector("h3");
+    // photoTitle.setAttribute("src", allPhotos[currentIndex]);
 }
 
 
@@ -94,7 +131,7 @@ function imageTemplate(media, index) {
             img.setAttribute("data-index", index);
             img.addEventListener("click", () => {
                 currentIndex = index;
-                openLightBox(index, photos, title)
+                openLightBox(index)
             })
         } else {
             const srcVideo = `/assets/photographers/SamplePhotos/${photographerId}/${video}`;
@@ -105,6 +142,10 @@ function imageTemplate(media, index) {
             videoHtml.setAttribute("controls", true);
             videoHtml.appendChild(source);
             photosPhotograph.appendChild(videoHtml);
+            videoHtml.addEventListener("click", () => {
+                currentIndex = index;
+                openLightBox(index)
+            })
         }
         content.appendChild(h3)
         content.appendChild(p)
