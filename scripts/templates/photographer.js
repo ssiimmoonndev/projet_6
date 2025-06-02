@@ -67,11 +67,15 @@ function closeLightBox() {
 }
 
 function showNextImage() {
+    // Calcule l'index suivant en bouclant au début si on arrive à la fin
+    // % (modulo) assure qu'on revient à 0 après le dernier élément
     currentIndex = (currentIndex + 1) % allPhotos.length;
     updateLightBoxImage();
 }
 
 function showPreviousImage() {
+    // Calcule l'index précédent en bouclant à la fin si on est au début
+    // + allPhotos.length évite les nombres négatifs
     currentIndex = (currentIndex - 1 + allPhotos.length) % allPhotos.length;
     updateLightBoxImage();
 }

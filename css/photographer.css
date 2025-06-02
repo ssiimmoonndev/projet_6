@@ -120,12 +120,6 @@ form input {
     /* flex-direction: row-reverse; */
 }
 
-.lightbox_previous,
-.lightbox_next {
-    color: #901C1C;
-    cursor: pointer;
-}
-
 .photo-lightbox img {
     z-index: 1000;
     width: 500px;
@@ -147,3 +141,20 @@ form input {
 .photos-photographe img {
     cursor: pointer;
 }
+
+.lightbox_previous, .lightbox_next {
+    color: #901C1C;
+    cursor: pointer;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23901C1C" fill-rule="evenodd" d="m9.005 4l8 8l-8 8L7 18l6.005-6L7 6z"/></svg>') no-repeat center;
+    text-indent: -9999px; /* Cache le texte */
+    width: 40px;
+    height: 40px;
+  }
+  
+  .lightbox_previous {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23901C1C" fill-rule="evenodd" d="m14.995 20l-8-8l8-8L17 6l-6.005 6L17 18z"/></svg>');
+  }
+
+  .lightbox_next {
+    display: flex;
+  }
