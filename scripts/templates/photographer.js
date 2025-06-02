@@ -36,8 +36,9 @@ function photographerTemplate(data) {
 function openLightBox(index) {
     
     const media = allPhotos[index];
-    const lightbox = document.querySelector(".lightbox");
-    lightbox.classList.add("active");
+    const lightbox = document.getElementById("lightbox_modal");
+    lightbox.style.display = "block";
+    // lightbox.classList.add("active");
     const photoLightBox = document.querySelector(".photo-lightbox");
     photoLightBox.innerHTML = ""; // Nettoie avant d'ajouter
     if (media.type == "image") {
@@ -60,8 +61,8 @@ function openLightBox(index) {
 }
 
 function closeLightBox() {
-    const lightbox = document.querySelector(".lightbox");
-    lightbox.classList.remove("active");
+    const lightbox = document.getElementById("lightbox_modal");
+    lightbox.style.display = "none";
     const photoLightBox = document.querySelector(".photo-lightbox");
     photoLightBox.innerHTML = "";
 }

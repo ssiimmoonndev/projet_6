@@ -76,8 +76,8 @@ async function displayPhotographerData() {
     imageSection.appendChild(mediaCardDOM);
   });
 
-  document.querySelector(".lightbox_previous").addEventListener("click", showPreviousImage);
-    document.querySelector(".lightbox_next").addEventListener("click", showNextImage);
+  document.querySelector(".previous").addEventListener("click", showPreviousImage);
+    document.querySelector(".next").addEventListener("click", showNextImage);
   
 }
 

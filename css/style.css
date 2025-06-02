@@ -31,6 +31,11 @@ p {
     padding-top: 10px;
 }
 
+button {
+    background-color: transparent;
+    border: none;
+}
+
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -124,11 +129,9 @@ a:visited {
     flex-direction: row;
 }
 
-button {
+.sort-by {
     font-size: large;
     font-weight: bold;
-    background-color: white;
-    border: none;
     padding-top: 20px;
 }
 
