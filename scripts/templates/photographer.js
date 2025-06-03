@@ -58,9 +58,17 @@ function openLightBox(index) {
     photoTitle.textContent = media.title;
     photoTitle.className = "lightbox-title";
     photoLightBox.appendChild(photoTitle);
+
+    // Ajoute la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
+    // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
+    document.body.classList.add('no-scroll');
 }
 
 function closeLightBox() {
+    // Enlève la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
+    // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
+    document.body.classList.remove('no-scroll');
+
     const lightbox = document.getElementById("lightbox_modal");
     lightbox.style.display = "none";
     const photoLightBox = document.querySelector(".photo-lightbox");
@@ -83,9 +91,6 @@ function showPreviousImage() {
 
 function updateLightBoxImage() {
     const media = allPhotos[currentIndex]
-
-    
-    
     
     const photoLightBox = document.querySelector(".photo-lightbox");
     photoLightBox.innerHTML = ""; // Nettoie avant d'ajouter

@@ -1,11 +1,21 @@
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
+
+  // Ajoute la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
+  // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
+  document.body.classList.add('no-scroll');
+
+  const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
 }
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+
+  // Enlève la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
+  // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
+  document.body.classList.remove('no-scroll');
+
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "none";
 }
 
 const prenom = document.getElementById("first"); // Champ prenom
