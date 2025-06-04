@@ -34,6 +34,10 @@ function photographerTemplate(data) {
 }
 
 function openLightBox(index) {
+
+    // Ajoute la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
+    // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
+    document.body.classList.add('no-scroll');
     
     const media = allPhotos[index];
     const lightbox = document.getElementById("lightbox_modal");
@@ -59,9 +63,6 @@ function openLightBox(index) {
     photoTitle.className = "lightbox-title";
     photoLightBox.appendChild(photoTitle);
 
-    // Ajoute la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
-    // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
-    document.body.classList.add('no-scroll');
 }
 
 function closeLightBox() {
@@ -116,6 +117,17 @@ function updateLightBoxImage() {
     // photoTitle.setAttribute("src", allPhotos[currentIndex]);
 }
 
+function updateLikes(likeElement, mediaId) {
+    const currentText = likeElement.textContent;
+    const currentLikes = parseInt(currentText.replace(' ♥', ''));
+
+     // Incrémente de 1
+     const newLikes = currentLikes + 1;
+    
+     // Met à jour l'affichage
+     likeElement.textContent = newLikes + " ♥";
+}
+
 
 function imageTemplate(media, index) {
     const { id, photographerId, title, image, video, likes } = media;
@@ -133,6 +145,14 @@ function imageTemplate(media, index) {
         h3.textContent = title;
         const p = document.createElement('p');
         p.textContent = likes + " ♥ ";
+        p.style.cursor = "pointer"; // Indique que c'est cliquable
+        p.style.userSelect = "none"; // Empêche la sélection du texte
+
+        // Ajout de l'événement click pour incrémenter les likes
+        p.addEventListener("click", (e) => {
+            e.stopPropagation(); // Empêche la propagation vers d'autres éléments
+            incrementLikes(p, id)});
+
         if (image) {
             const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
             const img = document.createElement( 'img' );
