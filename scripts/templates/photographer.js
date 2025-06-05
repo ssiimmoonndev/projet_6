@@ -117,17 +117,6 @@ function updateLightBoxImage() {
     // photoTitle.setAttribute("src", allPhotos[currentIndex]);
 }
 
-function updateLikes(likeElement, mediaId) {
-    const currentText = likeElement.textContent;
-    const currentLikes = parseInt(currentText.replace(' ♥', ''));
-
-     // Incrémente de 1
-     const newLikes = currentLikes + 1;
-    
-     // Met à jour l'affichage
-     likeElement.textContent = newLikes + " ♥";
-}
-
 
 function imageTemplate(media, index) {
     const { id, photographerId, title, image, video, likes } = media;
@@ -147,6 +136,13 @@ function imageTemplate(media, index) {
         p.textContent = likes + " ♥ ";
         p.style.cursor = "pointer"; // Indique que c'est cliquable
         p.style.userSelect = "none"; // Empêche la sélection du texte
+        let newLikes = 0
+        p.addEventListener("click", () => {
+        newLikes += 1
+        const totalLikes = likes + newLikes
+        p.textContent = totalLikes + " ♥ ";
+        console.log(sum);
+        })
 
         if (image) {
             const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
