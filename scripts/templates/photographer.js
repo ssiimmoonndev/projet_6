@@ -41,7 +41,7 @@ function openLightBox(index) {
     
     const media = allPhotos[index];
     const lightbox = document.getElementById("lightbox_modal");
-    lightbox.style.display = "block";
+    lightbox.style.display = "flex";
     // lightbox.classList.add("active");
     const photoLightBox = document.querySelector(".photo-lightbox");
     photoLightBox.innerHTML = ""; // Nettoie avant d'ajouter
@@ -147,11 +147,6 @@ function imageTemplate(media, index) {
         p.textContent = likes + " ♥ ";
         p.style.cursor = "pointer"; // Indique que c'est cliquable
         p.style.userSelect = "none"; // Empêche la sélection du texte
-
-        // Ajout de l'événement click pour incrémenter les likes
-        p.addEventListener("click", (e) => {
-            e.stopPropagation(); // Empêche la propagation vers d'autres éléments
-            incrementLikes(p, id)});
 
         if (image) {
             const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
