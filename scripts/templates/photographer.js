@@ -136,13 +136,29 @@ function imageTemplate(media, index) {
         p.textContent = likes + " ♥ ";
         p.style.cursor = "pointer"; // Indique que c'est cliquable
         p.style.userSelect = "none"; // Empêche la sélection du texte
-        let newLikes = 0
-        p.addEventListener("click", () => {
-        newLikes += 1
-        const totalLikes = likes + newLikes
-        p.textContent = totalLikes + " ♥ ";
-        console.log(sum);
-        })
+
+        let isLiked = false;
+        function handleLike() {
+            if (!isLiked) {
+                isLiked = true;
+                const newLikes = likes + 1;
+                p.textContent = newLikes + " ♥ ";
+                p.style.color = "red"; // Changer la couleur
+                p.style.cursor = "default"; // Changer le curseur
+                p.style.opacity = "0.7"; // Indiquer que c'est désactivé
+                totalLikes += 1;
+                updateTotalLikesDisplay();
+                p.removeEventListener("click", handleLike);
+            }
+        }
+        p.addEventListener("click", handleLike);
+        // let newLikes = 0
+        // p.addEventListener("click", () => {
+        // newLikes += 1
+        // const totalLikes = likes + newLikes
+        // p.textContent = totalLikes + " ♥ ";
+        // console.log(sum);
+        // })
 
         if (image) {
             const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
@@ -176,3 +192,39 @@ function imageTemplate(media, index) {
 
     return { id, media, getMediaDOM }
 }
+
+let totalLikes = 0;
+
+// Fonction pour mettre à jour l'affichage du total des likes
+function updateTotalLikesDisplay(price) {
+    const container = document.querySelector(".like-and-price");
+    if (container) {
+    //   totalLikesElement.textContent = totalLikes + " ♥ ";
+        container.innerHTML = `
+        <p style="margin: 0;">${totalLikes} ♥</p>
+        <p style="margin: 0;">${photographerPrice}€/jour</p>
+        `;
+    }
+  }
+  
+  // Fonction pour calculer le total initial des likes
+  function calculateInitialTotalLikes(photographerMedia) {
+    totalLikes = photographerMedia.reduce((sum, media) => sum + media.likes, 0);
+  }
+  
+  // Fonction pour afficher le total des likes dans le DOM
+  function displayTotalLikes() {
+    const photographerSection = document.querySelector(".photographer-info"); 
+    
+    const totalLikesContainer = document.createElement('div');
+    totalLikesContainer.className = "total-likes-container";
+    
+    const totalLikesElement = document.createElement('p');
+    totalLikesElement.className = "total-likes";
+    totalLikesElement.textContent = totalLikes + " ♥ total";
+    totalLikesElement.style.fontWeight = "bold";
+    totalLikesElement.style.fontSize = "18px";
+    
+    totalLikesContainer.appendChild(totalLikesElement);
+    photographerSection.appendChild(totalLikesContainer);
+  }

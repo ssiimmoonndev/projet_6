@@ -5,6 +5,8 @@ const id = parseInt(params.get("id"));
 let currentIndex = 0;
 let allPhotos = [];
 
+let photographerPrice = 0;
+
 // Fonction pour récupérer les données depuis le fichier JSON
 async function fetchData() {
   try {
@@ -46,6 +48,19 @@ async function displayPhotographerData() {
   
   // Filtre pour obtenir uniquement les médias du photographe
   const photographerMedia = media.filter(item => item.photographerId === id);
+
+
+  photographerPrice = photographer.price; // ✅ stocke le prix globalement
+  calculateInitialTotalLikes(photographerMedia);
+  updateTotalLikesDisplay(); // ✅ ne passe plus de paramètre
+
+
+
+
+
+  // calculateInitialTotalLikes(photographerMedia);
+  // updateTotalLikesDisplay(photographer.price);
+  
   
   // Affiche les médias du photographe
 
@@ -76,8 +91,37 @@ async function displayPhotographerData() {
 
   document.querySelector(".previous").addEventListener("click", showPreviousImage);
     document.querySelector(".next").addEventListener("click", showNextImage);
-  
 }
+
+
+// async function displayAllPhotographersTotals() {
+//   const { photographers, media } = await fetchData();
+  
+//   photographers.forEach(photographer => {
+//     // Filtrer les médias de chaque photographe
+//     const photographerMedia = media.filter(item => item.photographerId === photographer.id);
+    
+//     // Calculer le total des likes pour ce photographe
+//     const totalLikes = photographerMedia.reduce((sum, mediaItem) => sum + mediaItem.likes, 0);
+    
+//     // Trouver l'élément de ce photographe dans le DOM et y ajouter le total
+//     const photographerCard = document.querySelector(`a[href="photographer.html?id=${photographer.id}"]`);
+//     if (photographerCard) {
+//       const article = photographerCard.querySelector('article');
+      
+//       // Créer un élément pour afficher le total des likes
+//       const totalLikesElement = document.createElement('p');
+//       totalLikesElement.textContent = `${totalLikes} ♥ total`;
+//       totalLikesElement.style.fontWeight = "bold";
+//       totalLikesElement.style.color = "#901C1C";
+//       totalLikesElement.style.margin = "5px 0";
+      
+//       // Ajouter avant le prix
+//       const priceElement = article.querySelector('p');
+//       article.insertBefore(totalLikesElement, priceElement);
+//     }
+//   });
+// }
 
 
 displayPhotographerData()

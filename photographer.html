@@ -26,16 +26,16 @@
         </div>
       </div>
       <div class="liste-photos">
-        <label for="sort-by">Trier par:</label>
-        <select name="Trier" id="Trier">
-          <option value="">--Sélectionner une option--</option>
-          <option value="popularite">Popularité</option>
-          <option value="date">Date</option>
-          <option value="titre">Titre</option>
-        </select>
-        <!-- <button class="sort-by">Trier par</button> -->
+        <div class="sort-container">
+          <label for="sort">Trier par:</label>
+          <select name="Trier" id="Trier">
+            <option value="">--Sélectionner une option--</option>
+            <option value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+        </div>
         <div class="photos-photographer">
-          
         </div>
       </div>
     </main>
@@ -105,6 +105,7 @@
         </div>
       </div>
     </div>
+    <div class="like-and-price"></div>
     <script src="/scripts/utils/scroll.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/templates/photographer.js"></script>

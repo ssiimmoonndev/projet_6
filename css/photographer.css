@@ -166,3 +166,16 @@ form input {
   .lightbox-title {
     color: #901C1C;
   }
+
+.like-and-price {
+    position: fixed;
+    bottom: 1%;
+    right: 5%;
+    gap: 20px;
+    padding: 0 10px 5px 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #901C1C;
+    color: white;
+}
