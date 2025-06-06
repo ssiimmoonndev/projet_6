@@ -11,7 +11,7 @@
     <header>
       <img src="assets/images/logo.png" class="logo" />
     </header>
-    <main id="main">
+    <main id="main-wrapper" aria-hidden="false">
       <div class="photograph-header">
         <div class="photograph-info">
           <h1 class="photographer-name"></h1>
@@ -26,13 +26,20 @@
         </div>
       </div>
       <div class="liste-photos">
-        <button class="sort-by">Trier par</button>
+        <label for="sort-by">Trier par:</label>
+        <select name="Trier" id="Trier">
+          <option value="">--Sélectionner une option--</option>
+          <option value="popularite">Popularité</option>
+          <option value="date">Date</option>
+          <option value="titre">Titre</option>
+        </select>
+        <!-- <button class="sort-by">Trier par</button> -->
         <div class="photos-photographer">
           
         </div>
       </div>
     </main>
-    <div class="modal" id="contact_modal">
+    <div class="modal" id="contact_modal" aria-hidden="true" role="dialog" aria-describedby="contactModal">
 			<div class="modal-content formulaire">
 				<header>
           <h2>Contactez-moi</h2>
@@ -81,7 +88,7 @@
 				</form>
 			</div>
 		</div>
-    <div class="modal" id="lightbox_modal">
+    <div class="modal" id="lightbox_modal" aria-hidden="true" role="dialog" aria-describedby="lightboxModal">
       <div class="modal-content lightbox">
         <div class="cross-lightbox">
           <img src="assets/icons/close.svg" onclick="closeLightBox()" />
