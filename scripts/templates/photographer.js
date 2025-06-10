@@ -1,8 +1,11 @@
+// Fonction template qui crée une carte de photographe
 function photographerTemplate(data) {
+    // Déstructuration pour extraire les propriétés de l'objet data
     const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/SamplePhotos/Photographers_ID_Photos/${portrait}`;
 
+    // Fonction qui génère et retourne l'élément DOM de la carte du photographe
     function getUserCardDOM() {
         const a = document.createElement( 'a' );
         const article = document.createElement( 'article' );
@@ -27,7 +30,9 @@ function photographerTemplate(data) {
         article.appendChild(p);
         a.appendChild(article);
 
+        // Définit l'attribut href du lien vers la page du photographe avec son ID
         a.setAttribute("href", `photographer.html?id=${id}`)
+        // Retourne l'élément lien complet
         return (a);
     }
     return { name, picture, getUserCardDOM }
@@ -39,17 +44,19 @@ function openLightBox(index) {
     // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
     document.body.classList.add('no-scroll');
     
+    // Récupère le média à l'index donné dans le tableau allPhotos
     const media = allPhotos[index];
     const lightbox = document.getElementById("lightbox_modal");
     lightbox.style.display = "flex";
-    // lightbox.classList.add("active");
     const photoLightBox = document.querySelector(".photo-lightbox");
-    photoLightBox.innerHTML = ""; // Nettoie avant d'ajouter
+    photoLightBox.innerHTML = ""; // Nettoie le conteneur avant d'ajouter
+    // Si le média est une image
     if (media.type == "image") {
         const img = document.createElement( 'img' );
         photoLightBox.appendChild(img);
+        // Définit le src de l'image
         img.setAttribute("src", media.src)
-    } else {
+    } else { // Si le média est une vidéo
         const videoHtml = document.createElement( 'video' );
         const source = document.createElement( 'source' );
         source.setAttribute("src", media.src)
@@ -91,15 +98,16 @@ function showPreviousImage() {
 }
 
 function updateLightBoxImage() {
+    // Récupère le média à l'index actuel
     const media = allPhotos[currentIndex]
     
     const photoLightBox = document.querySelector(".photo-lightbox");
-    photoLightBox.innerHTML = ""; // Nettoie avant d'ajouter
-    if (media.type == "image") {
+    photoLightBox.innerHTML = ""; // Nettoie le conteneur avant d'ajouter
+    if (media.type == "image") { // Si le média est une image
         const img = document.createElement( 'img' );
         photoLightBox.appendChild(img);
         img.setAttribute("src", media.src)
-    } else {
+    } else { // Si le média est une vidéo
         const videoHtml = document.createElement( 'video' );
         const source = document.createElement( 'source' );
         source.setAttribute("src", media.src)
@@ -117,8 +125,9 @@ function updateLightBoxImage() {
     // photoTitle.setAttribute("src", allPhotos[currentIndex]);
 }
 
-
+// Fonction template qui crée un élément média (image ou vidéo)
 function imageTemplate(media, index) {
+    // Déstructuration pour extraire les propriétés de l'objet media
     const { id, photographerId, title, image, video, likes } = media;
 
     function getMediaDOM() {
@@ -137,8 +146,11 @@ function imageTemplate(media, index) {
         p.style.cursor = "pointer"; // Indique que c'est cliquable
         p.style.userSelect = "none"; // Empêche la sélection du texte
 
+        // Variable pour tracker si l'utilisateur a déjà liké
         let isLiked = false;
+        // Fonction qui gère le clic sur les likes
         function handleLike() {
+            // Si pas encore liké
             if (!isLiked) {
                 isLiked = true;
                 const newLikes = likes + 1;
@@ -148,17 +160,11 @@ function imageTemplate(media, index) {
                 p.style.opacity = "0.7"; // Indiquer que c'est désactivé
                 totalLikes += 1;
                 updateTotalLikesDisplay();
+                // Supprime l'écouteur d'événement pour empêcher de re-liker
                 p.removeEventListener("click", handleLike);
             }
         }
         p.addEventListener("click", handleLike);
-        // let newLikes = 0
-        // p.addEventListener("click", () => {
-        // newLikes += 1
-        // const totalLikes = likes + newLikes
-        // p.textContent = totalLikes + " ♥ ";
-        // console.log(sum);
-        // })
 
         if (image) {
             const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
