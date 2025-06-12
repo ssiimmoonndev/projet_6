@@ -23,10 +23,11 @@ async function getPhotographers() {
 // Si une erreur se produit durant la requête, affiche "error" dans la console
 async function displayData(photographers) { 
   // Affiche les données des photographes dans la console
-  console.log(photographers); 
+  console.log(photographers);
   
   // Sélectionne l'élément HTML avec la classe "photographer_section" où les cartes des photographes seront affichées
   const photographersSection = document.querySelector(".photographer_section");
+    
 
   // Parcourt chaque photographe dans le tableau
   photographers.forEach((photographer) => { 
@@ -36,6 +37,7 @@ async function displayData(photographers) {
       const userCardDOM = photographerModel.getUserCardDOM(); 
       // Ajoute cette carte à la section des photographes dans le DOM
       photographersSection.appendChild(userCardDOM); 
+  
   });
 }
 

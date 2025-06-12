@@ -146,25 +146,22 @@ function imageTemplate(media, index) {
         p.style.cursor = "pointer"; // Indique que c'est cliquable
         p.style.userSelect = "none"; // Empêche la sélection du texte
 
-        // Variable pour tracker si l'utilisateur a déjà liké
+        // Variable pour dire qu'aucune photos n'est likée
         let isLiked = false;
         // Fonction qui gère le clic sur les likes
-        function handleLike() {
+        function likePhoto() {
             // Si pas encore liké
             if (!isLiked) {
                 isLiked = true;
                 const newLikes = likes + 1;
                 p.textContent = newLikes + " ♥ ";
-                p.style.color = "red"; // Changer la couleur
-                p.style.cursor = "default"; // Changer le curseur
-                p.style.opacity = "0.7"; // Indiquer que c'est désactivé
                 totalLikes += 1;
                 updateTotalLikesDisplay();
                 // Supprime l'écouteur d'événement pour empêcher de re-liker
-                p.removeEventListener("click", handleLike);
+                p.removeEventListener("click", likePhoto);
             }
         }
-        p.addEventListener("click", handleLike);
+        p.addEventListener("click", likePhoto);
 
         if (image) {
             const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
@@ -194,15 +191,17 @@ function imageTemplate(media, index) {
         content.appendChild(p)
 
         return article
+        
     }
 
     return { id, media, getMediaDOM }
 }
 
+
 let totalLikes = 0;
 
 // Fonction pour mettre à jour l'affichage du total des likes
-function updateTotalLikesDisplay(price) {
+function updateTotalLikesDisplay() {
     const container = document.querySelector(".like-and-price");
     if (container) {
     //   totalLikesElement.textContent = totalLikes + " ♥ ";
@@ -218,7 +217,7 @@ function updateTotalLikesDisplay(price) {
     totalLikes = photographerMedia.reduce((sum, media) => sum + media.likes, 0);
   }
   
-  // Fonction pour afficher le total des likes dans le DOM
+  // Fonction pour afficher le total des likes
   function displayTotalLikes() {
     const photographerSection = document.querySelector(".photographer-info"); 
     
@@ -227,9 +226,7 @@ function updateTotalLikesDisplay(price) {
     
     const totalLikesElement = document.createElement('p');
     totalLikesElement.className = "total-likes";
-    totalLikesElement.textContent = totalLikes + " ♥ total";
-    totalLikesElement.style.fontWeight = "bold";
-    totalLikesElement.style.fontSize = "18px";
+    totalLikesElement.textContent = totalLikes + " ♥";
     
     totalLikesContainer.appendChild(totalLikesElement);
     photographerSection.appendChild(totalLikesContainer);

@@ -1,4 +1,3 @@
-
 // Récupère les paramètres de l'URL
 const params = new URL(document.location).searchParams;
 // Extrait la valeur de l'id et la convertit en nombre
@@ -8,6 +7,8 @@ const id = parseInt(params.get("id"));
 let currentIndex = 0;
 // Tableau contenant toutes les photos du photographe
 let allPhotos = [];
+
+let allMedia = [];
 
 // Variable pour stocker le prix du photographe
 // Cette initialisation à zéro est logique car aucun prix n'a été calculé ou récupéré.
@@ -48,6 +49,8 @@ const displayPhotographerInfo = (photographer) => {
   photographerImage.src = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/${photographer.portrait}`;
 }
 
+
+
 // Fonction pour filtrer et afficher les données du photographe
 async function displayPhotographerData() {
   // Récupère les données des photographes et des médias depuis le JSON
@@ -65,19 +68,39 @@ async function displayPhotographerData() {
   // Filtre pour obtenir uniquement les médias du photographe
   const photographerMedia = media.filter(item => item.photographerId === id);
 
+  let photographerMediaSort = Array.from(photographerMedia)
 
-  photographerPrice = photographer.price; // ✅ stocke le prix globalement
+  const boutonTrier = document.getElementById("Trier");
+
+  boutonTrier.addEventListener("change", (event) => {
+    if (event.target.value === "likes") {
+      photographerMediaSort.sort((a, b) => b.likes - a.likes);
+    }
+
+    if (event.target.value === "date") {
+      photographerMediaSort.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+    
+    if (event.target.value === "title") {
+      photographerMediaSort.sort((a, b) => a.title.localeCompare(b.title));
+    }
+    
+    // Mise à jour de l'affichage après le tri
+    imageSection.innerHTML = '';
+    photographerMediaSort.forEach((media, index) => {
+      const imagePhotographer = imageTemplate(media, index);
+      const mediaCardDOM = imagePhotographer.getMediaDOM();
+      imageSection.appendChild(mediaCardDOM);
+    });
+  });
+
+
+  photographerPrice = photographer.price;
   // Calcule le total initial des likes de tous les médias du photographe
   calculateInitialTotalLikes(photographerMedia);
-  updateTotalLikesDisplay(); // ✅ ne passe plus de paramètre
-
-
-
-
-
-  // calculateInitialTotalLikes(photographerMedia);
-  // updateTotalLikesDisplay(photographer.price);
+  updateTotalLikesDisplay();
   
+  console.log(photographerMediaSort);
   
   // Affiche les médias du photographe
   allPhotos = photographerMedia.map(media => {
@@ -113,7 +136,7 @@ async function displayPhotographerData() {
   });
 
   document.querySelector(".previous").addEventListener("click", showPreviousImage);
-    document.querySelector(".next").addEventListener("click", showNextImage);
+  document.querySelector(".next").addEventListener("click", showNextImage);
 }
 
 // Appelle la fonction principale pour initialiser la page
