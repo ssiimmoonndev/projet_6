@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
     </header>
     <main id="main-wrapper" aria-hidden="false">
       <div class="photograph-header">
@@ -22,7 +22,7 @@
         </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         <div class="photographe-info-image">
-          <img class="photographer-image" src="">
+          <img class="photographer-image" src="" alt="image de profil du photographe">
         </div>
       </div>
       <div class="liste-photos">
@@ -43,7 +43,7 @@
 			<div class="modal-content formulaire">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/closeWhite.svg" onclick="closeModal()" />
+          <img src="assets/icons/closeWhite.svg" onclick="closeModal()" alt="croix blanche pour fermer la modale"/>
         </header>
 				<form>
 					<div>
@@ -54,6 +54,7 @@
               id="first"
               name="first"
               minlength="2"
+              aria-label="Prénom"
             />
 					</div>
           <div>
@@ -64,6 +65,7 @@
             id="last"
             name="last"
             minlength="2"
+            aria-label="Nom"
            />
 					</div>
           <div>
@@ -73,6 +75,7 @@
               type="email"
               id="email"
               name="email"
+              aria-label="email"
              />
 					</div>
           <div>
@@ -82,6 +85,7 @@
               type="number"
               id="number"
               name="number"
+              aria-label="Numéro de téléphone"
             />
 					</div>
           <button class="contact_button">Envoyer</button>
@@ -91,7 +95,7 @@
     <div class="modal" id="lightbox_modal" aria-hidden="true" role="dialog" aria-describedby="lightboxModal">
       <div class="modal-content lightbox">
         <div class="cross-lightbox">
-          <img src="assets/icons/close.svg" onclick="closeLightBox()" />
+          <img src="assets/icons/close.svg" onclick="closeLightBox()" alt="croix blanche pour fermer la lightbox"/>
         </div>
         <div class="lightbox_button">
           <button class="lightbox-nav previous">
@@ -106,7 +110,6 @@
       </div>
     </div>
     <div class="like-and-price"></div>
-    <!-- <script src="/scripts/utils/scroll.js"></script> -->
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/templates/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

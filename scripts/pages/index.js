@@ -20,7 +20,6 @@ async function getPhotographers() {
   }
 }
 
-// Si une erreur se produit durant la requête, affiche "error" dans la console
 async function displayData(photographers) { 
   // Affiche les données des photographes dans la console
   console.log(photographers);
