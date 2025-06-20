@@ -1,0 +1,13 @@
+{
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "quotes": ["error", "double"],
+    "no-unused-vars": "off",
+    "no-undef": "off"
+  }
+}

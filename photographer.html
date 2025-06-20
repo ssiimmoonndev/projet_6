@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -16,7 +16,7 @@
         <div class="photograph-info">
           <h1 class="photographer-name"></h1>
           <div class="localisation">
-            <h3 class="photographer-city"></h3>
+            <h2 class="photographer-city"></h2>
           </div>
           <p class="photographer-tagline"></p>
         </div>
@@ -41,13 +41,20 @@
     </main>
     <div class="modal" id="contact_modal" aria-hidden="true" role="dialog" aria-describedby="contactModal">
 			<div class="modal-content formulaire">
-				<header>
+				<header class="modal-header">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/closeWhite.svg" onclick="closeModal()" alt="croix blanche pour fermer la modale"/>
+          <button
+            type="button"
+            class="close-button"
+            onclick="closeModal()"
+            aria-label="Fermer le formulaire"
+            title="Fermer">
+            <img src="assets/icons/closeWhite.svg" alt="" aria-hidden="true"/>
+        </button>
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
+						<label for="first">Prénom</label>
 						<input 
               class="text-control"
               type="text"
@@ -58,7 +65,7 @@
             />
 					</div>
           <div>
-						<label>Nom</label>
+						<label for="last">Nom</label>
 						<input
             class="text-control"
             type="text"
@@ -69,7 +76,7 @@
            />
 					</div>
           <div>
-						<label>Email</label>
+						<label for="email">Email</label>
 						<input
               class="text-control"
               type="email"
@@ -79,10 +86,10 @@
              />
 					</div>
           <div>
-						<label>Téléphone</label>
+						<label for="number">Téléphone</label>
 						<input
               class="text-control"
-              type="number"
+              type="tel"
               id="number"
               name="number"
               aria-label="Numéro de téléphone"
@@ -95,7 +102,14 @@
     <div class="modal" id="lightbox_modal" aria-hidden="true" role="dialog" aria-describedby="lightboxModal">
       <div class="modal-content lightbox">
         <div class="cross-lightbox">
-          <img src="assets/icons/close.svg" onclick="closeLightBox()" alt="croix blanche pour fermer la lightbox"/>
+          <button
+            type="button"
+            class="close-button"
+            onclick="closeLightBox()"
+            aria-label="Fermer la lightbox"
+            title="Fermer">
+            <img src="assets/icons/close.svg" alt="" aria-hidden="true"/>
+          </button>
         </div>
         <div class="lightbox_button">
           <button class="lightbox-nav previous">
@@ -110,8 +124,8 @@
       </div>
     </div>
     <div class="like-and-price"></div>
-    <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/templates/photographer.js"></script>
+    <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

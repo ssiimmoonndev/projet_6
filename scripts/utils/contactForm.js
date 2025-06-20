@@ -1,4 +1,4 @@
-function displayModal() {
+window.displayModal = function() {
 
   // Ajoute la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
   // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
@@ -8,7 +8,7 @@ function displayModal() {
 	modal.style.display = "flex";
 }
 
-function closeModal() {
+window.closeModal = function() {
 
   // Enlève la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
   // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller

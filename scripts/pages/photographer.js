@@ -3,17 +3,15 @@ const params = new URL(document.location).searchParams;
 // Extrait la valeur de l'id et la convertit en nombre
 const id = parseInt(params.get("id"));
 
-// Variable pour suivre l'index de l'image affichée dans la lightbox
-let currentIndex = 0;
-// Tableau contenant toutes les photos du photographe
-let allPhotos = [];
-
-let allMedia = [];
-
+// Variable globales pour la lightbox et les médias
+ window.currentIndex = 0;
+ window.allPhotos = []; // Tableau contenant toutes les photos du photographe
+ window.allMedia = [];
+ window.photographerPrice = 0;
 // Variable pour stocker le prix du photographe
 // Cette initialisation à zéro est logique car aucun prix n'a été calculé ou récupéré.
 // La variable sera mise à jour plus tard avec le vrai prix du photographe
-let photographerPrice = 0;
+window.totalLikes = 0;
 
 // Fonction pour récupérer les données depuis le fichier JSON
 async function fetchData() {
@@ -28,7 +26,7 @@ async function fetchData() {
   }
 }
 
-const picture = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/`;
+// const picture = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/`;
 
 // Affiche les informations du photographe
 const displayPhotographerInfo = (photographer) => {
@@ -49,7 +47,33 @@ const displayPhotographerInfo = (photographer) => {
   photographerImage.src = `/assets/photographers/SamplePhotos/Photographers_ID_Photos/${photographer.portrait}`;
 }
 
+// Fonction pour calculer le total initial des likes
+window.calculateInitialTotalLikes = function(photographerMedia) {
+  window.totalLikes = photographerMedia.reduce((sum, media) => sum + media.likes, 0);
+};
 
+// Fonction pour mettre à jour l'affichage du total des likes
+window.updateTotalLikesDisplay = function() {
+  const container = document.querySelector(".like-and-price");
+  if (container) {
+    container.innerHTML = `
+      <p style="margin: 0;">${window.totalLikes} ♥</p>
+      <p style="margin: 0;">${window.photographerPrice}€/jour</p>
+    `;
+  }
+};
+
+// Fonction pour afficher l'image précédente dans la lightbox
+window.showPreviousImage = function() {
+  window.currentIndex = (window.currentIndex - 1 + window.allPhotos.length) % window.allPhotos.length;
+  window.updateLightBoxImage();
+};
+
+// Fonction pour afficher l'image suivante dans la lightbox
+window.showNextImage = function() {
+  window.currentIndex = (window.currentIndex + 1) % window.allPhotos.length;
+  window.updateLightBoxImage();
+};
 
 // Fonction pour filtrer et afficher les données du photographe
 async function displayPhotographerData() {
@@ -88,22 +112,22 @@ async function displayPhotographerData() {
     // Mise à jour de l'affichage après le tri
     imageSection.innerHTML = '';
     photographerMediaSort.forEach((media, index) => {
-      const imagePhotographer = imageTemplate(media, index);
+      const imagePhotographer = window.imageTemplate(media, index);
       const mediaCardDOM = imagePhotographer.getMediaDOM();
       imageSection.appendChild(mediaCardDOM);
     });
   });
 
 
-  photographerPrice = photographer.price;
+  window.photographerPrice = photographer.price;
   // Calcule le total initial des likes de tous les médias du photographe
-  calculateInitialTotalLikes(photographerMedia);
-  updateTotalLikesDisplay();
+  window.calculateInitialTotalLikes(photographerMedia);
+  window.updateTotalLikesDisplay();
   
   console.log(photographerMediaSort);
   
   // Affiche les médias du photographe
-  allPhotos = photographerMedia.map(media => {
+  window.allPhotos = photographerMedia.map(media => {
     // Si le média est une image
     if (media.image) {
       return {
@@ -128,15 +152,15 @@ async function displayPhotographerData() {
   photographerMedia.forEach((media, index) => {
     
     // Crée un template pour chaque média
-    const imagePhotographer = imageTemplate(media, index);
+    const imagePhotographer = window.imageTemplate(media, index);
     // Génère l'élément DOM du média
     const mediaCardDOM = imagePhotographer.getMediaDOM();
     // Ajoute le média à la section des images
     imageSection.appendChild(mediaCardDOM);
   });
 
-  document.querySelector(".previous").addEventListener("click", showPreviousImage);
-  document.querySelector(".next").addEventListener("click", showNextImage);
+  document.querySelector(".previous").addEventListener("click", window.showPreviousImage);
+  document.querySelector(".next").addEventListener("click", window.showNextImage);
 }
 
 // Appelle la fonction principale pour initialiser la page

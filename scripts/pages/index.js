@@ -1,3 +1,6 @@
+// import {
+//   photographerTemplate
+// } from "../templates/photographer.js"
 
 // Définit une fonction asynchrone (qui peut être mise en pause pendant qu'elle attend une réponse)
 async function getPhotographers() {
@@ -31,7 +34,7 @@ async function displayData(photographers) {
   // Parcourt chaque photographe dans le tableau
   photographers.forEach((photographer) => { 
       // Crée un modèle de photographe en utilisant la fonction "photographerTemplate"
-      const photographerModel = photographerTemplate(photographer); 
+      const photographerModel = window.photographerTemplate(photographer); 
       // Génère l'élément HTML représentant la carte du photographe
       const userCardDOM = photographerModel.getUserCardDOM(); 
       // Ajoute cette carte à la section des photographes dans le DOM
