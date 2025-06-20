@@ -131,7 +131,7 @@ async function displayPhotographerData() {
     // Si le média est une image
     if (media.image) {
       return {
-        src:`/assets/photographers/SamplePhotos/${media.photographerId}/${media.image}`,
+        src:`./assets/photographers/SamplePhotos/${media.photographerId}/${media.image}`,
         // Récupère le titre de l'image
         title:media.title,
         // Définit le type comme "image"
@@ -139,7 +139,7 @@ async function displayPhotographerData() {
       }
     } else if (media.video) { // Si le média est une vidéo
       return {
-        src:`/assets/photographers/SamplePhotos/${media.photographerId}/${media.video}`,
+        src:`./assets/photographers/SamplePhotos/${media.photographerId}/${media.video}`,
         // Récupère le titre de la vidéo
         title:media.title,
         // Définit le type comme "video"
