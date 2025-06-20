@@ -44,7 +44,7 @@ const displayPhotographerInfo = (photographer) => {
   // Met la ville et le pays du photographe dans cet élément
   photographerTagLineHtml.innerHTML = photographer.tagline
   let photographerImage = document.querySelector(".photographer-image");
-  photographerImage.src = `assets/photographers/SamplePhotos/Photographers_ID_Photos/${photographer.portrait}`;
+  photographerImage.src = `./assets/photographers/SamplePhotos/Photographers_ID_Photos/${photographer.portrait}`;
 }
 
 // Fonction pour calculer le total initial des likes
@@ -131,7 +131,7 @@ async function displayPhotographerData() {
     // Si le média est une image
     if (media.image) {
       return {
-        src:`assets/photographers/SamplePhotos/${media.photographerId}/${media.image}`,
+        src:`./assets/photographers/SamplePhotos/${media.photographerId}/${media.image}`,
         // Récupère le titre de l'image
         title:media.title,
         // Définit le type comme "image"
@@ -139,7 +139,7 @@ async function displayPhotographerData() {
       }
     } else if (media.video) { // Si le média est une vidéo
       return {
-        src:`assets/photographers/SamplePhotos/${media.photographerId}/${media.video}`,
+        src:`./assets/photographers/SamplePhotos/${media.photographerId}/${media.video}`,
         // Récupère le titre de la vidéo
         title:media.title,
         // Définit le type comme "video"
