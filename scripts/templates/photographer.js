@@ -147,7 +147,7 @@ window.imageTemplate = function(media, index) {
         p.addEventListener("click", likePhoto);
 
         if (image) {
-            const photos = `/assets/photographers/SamplePhotos/${photographerId}/${image}`;
+            const photos = `assets/photographers/SamplePhotos/${photographerId}/${image}`;
             const img = document.createElement("img");
             img.setAttribute("src", photos);
             photosPhotograph.appendChild(img);
@@ -157,7 +157,7 @@ window.imageTemplate = function(media, index) {
                 window.openLightBox(index);
             });
         } else {
-            const srcVideo = `/assets/photographers/SamplePhotos/${photographerId}/${video}`;
+            const srcVideo = `assets/photographers/SamplePhotos/${photographerId}/${video}`;
             const videoHtml = document.createElement("video");
             const source = document.createElement("source");
             source.setAttribute("src", srcVideo);
