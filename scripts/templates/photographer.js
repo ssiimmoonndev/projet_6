@@ -38,8 +38,14 @@ window.photographerTemplate = function(data) {
     return { name, picture, getUserCardDOM };
 };
 
+// Variables pour gérer le focus de la lightbox
+let lastFocusedElementLightbox = null;
+
 // Fonction pour ouvrir la lightbox
 window.openLightBox = function(index) {
+
+    // Sauvegarde l'élément qui avait le focus avant l'ouverture de la lightbox
+    lastFocusedElementLightbox = document.activeElement;
     // Ajoute la classe 'no-scroll' au body, qui a pour style 'overflow: hidden'
     // 'overflow: hidden' permet dans mon cas de ne pas afficher la barre de scroll et de nous empêcher de scroller
     document.body.classList.add("no-scroll");
@@ -49,10 +55,13 @@ window.openLightBox = function(index) {
     const lightbox = document.getElementById("lightbox_modal");
     lightbox.style.display = "flex";
     const photoLightBox = document.querySelector(".photo-lightbox");
+    lightbox.setAttribute("aria-hidden", "false");
     photoLightBox.innerHTML = ""; // Nettoie le conteneur avant d'ajouter
+
     // Si le média est une image
     if (media.type === "image") {
         const img = document.createElement("img");
+        img.setAttribute("alt", media.title);
         photoLightBox.appendChild(img);
         // Définit le src de l'image
         img.setAttribute("src", media.src);
@@ -62,6 +71,7 @@ window.openLightBox = function(index) {
         source.setAttribute("src", media.src);
         videoHtml.setAttribute("data-index", index);
         videoHtml.setAttribute("controls", true);
+        videoHtml.setAttribute("aria-label", media.title);
         videoHtml.appendChild(source);
         photoLightBox.appendChild(videoHtml);
     }
@@ -69,7 +79,18 @@ window.openLightBox = function(index) {
     photoTitle.textContent = media.title;
     photoTitle.className = "lightbox-title";
     photoLightBox.appendChild(photoTitle);
+
+     // Focus sur le bouton de fermeture
+     const closeButton = lightbox.querySelector(".close-button");
+     if (closeButton) {
+         closeButton.focus();
+     }
+     
+     // Piège le focus dans la lightbox
+     trapFocusLightbox(lightbox);
 };
+
+
 
 // Fonction pour fermer la lightbox
 window.closeLightBox = function() {
@@ -79,8 +100,17 @@ window.closeLightBox = function() {
 
     const lightbox = document.getElementById("lightbox_modal");
     lightbox.style.display = "none";
+    lightbox.setAttribute("aria-hidden", "true");
     const photoLightBox = document.querySelector(".photo-lightbox");
     photoLightBox.innerHTML = "";
+
+     // Restaure le focus sur l'élément qui l'avait avant l'ouverture
+     if (lastFocusedElementLightbox) {
+        lastFocusedElementLightbox.focus();
+    }
+    
+    // Supprime le piège de focus
+    removeFocusTrapLightbox();
 };
 
 // Fonction pour mettre à jour l'image dans la lightbox
@@ -92,6 +122,7 @@ window.updateLightBoxImage = function() {
     photoLightBox.innerHTML = ""; // Nettoie le conteneur avant d'ajouter
     if (media.type === "image") { // Si le média est une image
         const img = document.createElement("img");
+        img.setAttribute("alt", media.title);
         photoLightBox.appendChild(img);
         img.setAttribute("src", media.src);
     } else { // Si le média est une vidéo
@@ -100,6 +131,7 @@ window.updateLightBoxImage = function() {
         source.setAttribute("src", media.src);
         videoHtml.setAttribute("data-index", window.currentIndex);
         videoHtml.setAttribute("controls", true);
+        videoHtml.setAttribute("aria-label", media.title);
         videoHtml.appendChild(source);
         photoLightBox.appendChild(videoHtml);
     }
@@ -108,6 +140,69 @@ window.updateLightBoxImage = function() {
     photoTitle.className = "lightbox-title";
     photoLightBox.appendChild(photoTitle);
 };
+
+// Fonction pour piéger le focus dans la lightbox
+function trapFocusLightbox(element) {
+    const focusableElements = element.querySelectorAll(
+        'button, video[controls], [tabindex]:not([tabindex="-1"])'
+    );
+    
+    if (focusableElements.length === 0) return;
+    
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+    // Gestionnaire d'événement pour la navigation au clavier dans la lightbox
+    window.lightboxKeydownHandler = function(event) {
+        // Fermer la lightbox avec Escape
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            window.closeLightBox();
+            return;
+        }
+        
+        // Navigation avec les flèches
+        if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            window.showPreviousImage();
+            return;
+        }
+        
+        if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            window.showNextImage();
+            return;
+        }
+        
+        // Gestion de la tabulation
+        if (event.key === 'Tab') {
+            if (event.shiftKey) {
+                // Shift + Tab (navigation vers l'arrière)
+                if (document.activeElement === firstFocusableElement) {
+                    event.preventDefault();
+                    lastFocusableElement.focus();
+                }
+            } else {
+                // Tab (navigation vers l'avant)
+                if (document.activeElement === lastFocusableElement) {
+                    event.preventDefault();
+                    firstFocusableElement.focus();
+                }
+            }
+        }
+    };
+    
+    // Ajout de l'écouteur d'événement
+    document.addEventListener('keydown', window.lightboxKeydownHandler);
+}
+
+// Fonction pour supprimer le piège de focus de la lightbox
+function removeFocusTrapLightbox() {
+    if (window.lightboxKeydownHandler) {
+        document.removeEventListener('keydown', window.lightboxKeydownHandler);
+        window.lightboxKeydownHandler = null;
+    }
+}
 
 // Fonction template qui crée un élément média (image ou vidéo)
 window.imageTemplate = function(media, index) {
