@@ -47,6 +47,26 @@ const displayPhotographerInfo = (photographer) => {
   photographerImage.src = `./assets/photographers/SamplePhotos/Photographers_ID_Photos/${photographer.portrait}`;
 }
 
+// Fonction pour mettre à jour le tableau allPhotos selon l'ordre des médias triés
+function updateAllPhotos(sortedMedia) {
+  window.allPhotos = sortedMedia.map(media => {
+    // Si le média est une image
+    if (media.image) {
+      return {
+        src: `./assets/photographers/SamplePhotos/${media.photographerId}/${media.image}`,
+        title: media.title,
+        type: "image"
+      }
+    } else if (media.video) { // Si le média est une vidéo
+      return {
+        src: `./assets/photographers/SamplePhotos/${media.photographerId}/${media.video}`,
+        title: media.title,
+        type: "video"
+      }
+    }
+  });
+}
+
 // Fonction pour calculer le total initial des likes
 window.calculateInitialTotalLikes = function(photographerMedia) {
   window.totalLikes = photographerMedia.reduce((sum, media) => sum + media.likes, 0);
@@ -111,6 +131,9 @@ async function displayPhotographerData() {
     
     // Mise à jour de l'affichage après le tri
     imageSection.innerHTML = '';
+
+    updateAllPhotos(photographerMediaSort);
+
     photographerMediaSort.forEach((media, index) => {
       const imagePhotographer = window.imageTemplate(media, index);
       const mediaCardDOM = imagePhotographer.getMediaDOM();
