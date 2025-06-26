@@ -83,17 +83,17 @@ window.updateTotalLikesDisplay = function() {
   }
 };
 
-// Fonction pour afficher l'image précédente dans la lightbox
-window.showPreviousImage = function() {
-  window.currentIndex = (window.currentIndex - 1 + window.allPhotos.length) % window.allPhotos.length;
-  window.updateLightBoxImage();
-};
+// // Fonction pour afficher l'image précédente dans la lightbox
+// window.showPreviousImage = function() {
+//   window.currentIndex = (window.currentIndex - 1 + window.allPhotos.length) % window.allPhotos.length;
+//   window.updateLightBoxImage();
+// };
 
-// Fonction pour afficher l'image suivante dans la lightbox
-window.showNextImage = function() {
-  window.currentIndex = (window.currentIndex + 1) % window.allPhotos.length;
-  window.updateLightBoxImage();
-};
+// // Fonction pour afficher l'image suivante dans la lightbox
+// window.showNextImage = function() {
+//   window.currentIndex = (window.currentIndex + 1) % window.allPhotos.length;
+//   window.updateLightBoxImage();
+// };
 
 // Fonction pour filtrer et afficher les données du photographe
 async function displayPhotographerData() {
