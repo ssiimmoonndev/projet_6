@@ -169,13 +169,12 @@ form input {
 
 .like-and-price {
     position: fixed;
-    bottom: 1%;
-    right: 5%;
-    gap: 20px;
+    bottom: 0;
+    right: 2%;
+    gap: 50px;
     padding: 0 10px 5px 10px;
     display: flex;
     align-items: center;
-    border-radius: 20px;
-    background-color: #901C1C;
-    color: white;
+    background-color: #db8876;
+    color: black;
 }
