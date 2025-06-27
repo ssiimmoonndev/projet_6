@@ -8,6 +8,11 @@ function initCustomSelect() {
   const options = customSelect.querySelectorAll('.custom-select-option');
   const originalSelect = document.getElementById('Trier');
 
+  // Rend les options focusables
+  options.forEach(option => {
+    option.setAttribute('tabindex', '0');
+  });
+
   // Toggle du menu
   customSelectButton.addEventListener('click', function() {
       const isOpen = customSelectOptions.classList.contains('show');
@@ -48,6 +53,14 @@ function initCustomSelect() {
           customSelectButton.classList.remove('open');
           customSelectButton.setAttribute('aria-expanded', 'false');
       });
+
+      // Ajout de la navigation clavier sur les options
+      option.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              this.click(); // Déclenche le clic
+          }
+      });
   });
 
   // Ferme le menu si on clique ailleurs
@@ -59,12 +72,46 @@ function initCustomSelect() {
       }
   });
 
-  // Gestion du clavier
+  // Gestion du clavier sur le bouton principal
   customSelectButton.addEventListener('keydown', function(event) {
       if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
           customSelectButton.click();
       }
+      
+      // Navigation avec les flèches quand le menu est ouvert
+      if (event.key === 'ArrowDown' && customSelectOptions.classList.contains('show')) {
+          event.preventDefault();
+          const firstOption = options[0];
+          if (firstOption) {
+              firstOption.focus();
+          }
+      }
+  });
+
+  // Navigation entre les options avec les flèches
+  options.forEach((option, index) => {
+      option.addEventListener('keydown', function(event) {
+          if (event.key === 'ArrowDown') {
+              event.preventDefault();
+              const nextOption = options[index + 1] || options[0];
+              nextOption.focus();
+          }
+          
+          if (event.key === 'ArrowUp') {
+              event.preventDefault();
+              const prevOption = options[index - 1] || options[options.length - 1];
+              prevOption.focus();
+          }
+          
+          if (event.key === 'Escape') {
+              event.preventDefault();
+              customSelectOptions.classList.remove('show');
+              customSelectButton.classList.remove('open');
+              customSelectButton.setAttribute('aria-expanded', 'false');
+              customSelectButton.focus();
+          }
+      });
   });
 }
 
