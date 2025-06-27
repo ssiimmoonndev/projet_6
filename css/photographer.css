@@ -178,3 +178,119 @@ form input {
     background-color: #db8876;
     color: black;
 }
+
+/* Style pour le conteneur du select personnalisé */
+.sort-container {
+    position: relative;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.sort-container label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 15px;
+    color: #000;
+}
+
+/* Cache le select original */
+#Trier {
+    display: none;
+}
+
+/* Style pour le select personnalisé */
+.custom-select {
+    position: relative;
+    display: inline-block;
+    min-width: 170px;
+}
+
+.custom-select-button {
+    background-color: #901C1C;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 40px 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    position: relative;
+}
+
+.custom-select-button:focus {
+    outline: 2px solid #901C1C;
+    outline-offset: 2px;
+}
+
+/* Flèche */
+.custom-select-button::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+    transition: transform 0.3s ease;
+}
+
+.custom-select-button.open::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Menu déroulant */
+.custom-select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 2px solid #901C1C;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+}
+
+.custom-select-options.show {
+    display: block;
+}
+
+/* .custom-select-option {
+    background-color: #901C1C;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    color: #000;
+    transition: background-color 0.2s ease;
+} */
+
+.custom-select-option {
+    background-color: #901C1C; /* Rouge comme le bouton principal */
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.custom-select-option:hover {
+    font-weight: 800;
+}
+
+.custom-select-option.selected {
+    background-color: #901C1C;
+    color: white;
+}
+
+.custom-select-option:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
