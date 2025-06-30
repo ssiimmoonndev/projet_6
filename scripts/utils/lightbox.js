@@ -20,17 +20,16 @@ window.openLightBox = function(index) {
     // Si le média est une image
     if (media.type === "image") {
         const img = document.createElement("img");
-        img.setAttribute("alt", media.title);
-        photoLightBox.appendChild(img);
-        // Définit le src de l'image
+        img.setAttribute("alt", `${media.title}, agrandir l'image`);
         img.setAttribute("src", media.src);
+        photoLightBox.appendChild(img);
     } else { // Si le média est une vidéo
         const videoHtml = document.createElement("video");
         const source = document.createElement("source");
         source.setAttribute("src", media.src);
         videoHtml.setAttribute("data-index", index);
         videoHtml.setAttribute("controls", true);
-        videoHtml.setAttribute("aria-label", media.title);
+        videoHtml.setAttribute("aria-label", `${media.title}, contrôles vidéo`);
         videoHtml.appendChild(source);
         photoLightBox.appendChild(videoHtml);
     }
@@ -78,16 +77,16 @@ window.updateLightBoxImage = function() {
     photoLightBox.innerHTML = ""; // Nettoie le conteneur avant d'ajouter
     if (media.type === "image") { // Si le média est une image
         const img = document.createElement("img");
-        img.setAttribute("alt", media.title);
-        photoLightBox.appendChild(img);
+        img.setAttribute("alt", `${media.title}, agrandir l'image`);
         img.setAttribute("src", media.src);
+        photoLightBox.appendChild(img);
     } else { // Si le média est une vidéo
         const videoHtml = document.createElement("video");
         const source = document.createElement("source");
         source.setAttribute("src", media.src);
         videoHtml.setAttribute("data-index", window.currentIndex);
         videoHtml.setAttribute("controls", true);
-        videoHtml.setAttribute("aria-label", media.title);
+        videoHtml.setAttribute("aria-label", `${media.title}, contrôles vidéo`);
         videoHtml.appendChild(source);
         photoLightBox.appendChild(videoHtml);
     }
